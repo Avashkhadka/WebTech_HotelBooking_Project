@@ -1,6 +1,12 @@
-.bg-primary{
+* {
+    /* margin: 0; */
+    /* padding: 0; */
+    box-sizing: border-box;
+}
+
+.bg-primary {
     background-color: #193366;
 }
-.bg-primary:hover{
-    background-color: #1A305D;
+.bg-primary:hover {
+    background-color: #1a305d;
 }
