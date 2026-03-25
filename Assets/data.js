@@ -5,7 +5,7 @@ export const roomDataArr = [
         price: 45,
         description: "Spacious room with stunning garden views, perfect for couples seeking comfort and tranquility.",
         image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        features: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View"],
+        features: ["Free WiFi", "Terrace Access", "Private Bathroom", "Garden View"],
     },
     {
         noOfGuest: 2,
@@ -13,7 +13,7 @@ export const roomDataArr = [
         price: 50,
         description: "Comfortable twin beds in a bright, airy room with modern amenities for friends traveling together.",
         image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        features: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Terrace Access"],
+        features: ["Free WiFi", "Terrace Access", "Private Bathroom", "Terrace Access"],
     },
     {
         noOfGuest: 4,
@@ -21,7 +21,7 @@ export const roomDataArr = [
         price: 75,
         description: "Generous suite with separate living area, ideal for families or groups seeking extra space.",
         image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        features: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Living Area"],
+        features: ["Free WiFi", "Terrace Access", "Private Bathroom", "Living Area"],
     },
     {
         noOfGuest: 1,
@@ -37,7 +37,7 @@ export const roomDataArr = [
         price: 35,
         description: "Self-contained studio with kitchenette, designed for extended stays of a week or more.",
         image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        features: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Kitchenette"],
+        features: ["Free WiFi", "Terrace Access", "Private Bathroom", "Kitchenette"],
     },
     {
         noOfGuest: 2,
@@ -109,24 +109,52 @@ export const review = [
         message: "Absolutely wonderful stay! The staff treated us like family. The rooms were spotless, and the garden terrace was perfect for morning tea. Already planning our return visit!",
         name: "Sayujya Maharjan",
         address: "Thecho, Lalitpur",
-        image: "../Assets/sayuj.jpg",
+        image: "Assets/sayuj.jpg",
     },
     {
         message: "Had an amazing experience. The rooms were clean, peaceful, and beautifully designed. The staff were very friendly and helpful throughout our stay.",
         name: "Prasish Maharjan",
         address: "Nayabazar, Kathmandu",
-        image: "../Assets/prasish.jpg",
+        image: "Assets/prasish.jpg",
     },
     {
         message: "One of the best places I’ve ever stayed in Kathmandu. The environment was relaxing, and the facilities were excellent. Highly recommended for families",
         name: "Avash Khadka",
         address: "Dashinkali, Kathmandu",
-        image: "../Assets/avash.jpg",
+        image: "Assets/avash.jpg",
     },
     {
         message: "Fantastic hospitality and beautiful rooms. Everything was well managed, and the garden view was my absolute favorite part. Will definitely visit again!",
         name: "Vison Maharjan",
         address: "Chapagaun, Lalitpur",
-        image: "../Assets/vison.jpg",
+        image: "Assets/vison.jpg",
+    },
+];
+
+export const gardenDetails = [
+    {
+        icon:"fa-solid fa-tree",
+        title: "Lush Greenery",
+        description: "Surrounded by carefully maintained plants and flowers",
+    },
+    {
+        icon:"fa-solid fa-sun",
+        title: "Natural Light",
+        description: "Open spaces perfect for relaxation and reading",
+    },
+    {
+        icon:"fa-solid fa-mug-hot",
+        title: "Terrace Dining",
+        description: "Enjoy meals in our beautiful outdoor setting",
+    },
+    {
+        icon:"fa-solid fa-wifi",
+        title: "Connected",
+        description: "Free WiFi throughout the garden area",
+    },
+    {
+        icon:"fa-solid fa-camera",
+        title: "Photo Worthy",
+        description: "Picture-perfect spots for memories",
     },
 ];

@@ -1,24 +1,31 @@
-import { featuresHomeArr, review, roomDataArr, whyGuestLoveUsArr } from "../Assets/data.js";
+import { featuresHomeArr, review, roomDataArr, whyGuestLoveUsArr,gardenDetails } from "../Assets/data.js";
 window.addEventListener("DOMContentLoaded", () => {
     const godown = document.querySelector("#godown");
     const section2 = document.querySelector("#section2");
     const navContainer = document.querySelector("#nav-cont");
+    const userName = document.querySelector("#userName");
     if (godown && section2 && navContainer) {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                navContainer.classList.remove("text-white");
-                navContainer.classList.add("text-black");
-                navContainer.classList.add("bg-white");
-                document.querySelector("#userName").classList.remove("text-white");
-                document.querySelector("#userName").classList.add("text-black");
-            } else {
-                navContainer.classList.remove("text-black");
-                navContainer.classList.add("text-white");
-                navContainer.classList.remove("bg-white");
-                document.querySelector("#userName").classList.remove("text-black");
-                document.querySelector("#userName").classList.add("text-white");
-            }
-        });
+        console.log(userName);
+        if (window.scrollY < 100)
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 50) {
+                    navContainer.classList.remove("text-white");
+                    navContainer.classList.add("text-black");
+                    navContainer.classList.add("bg-white");
+                    if (userName) {
+                        userName.classList.remove("text-white");
+                        userName.classList.add("text-black");
+                    }
+                } else {
+                    navContainer.classList.remove("text-black");
+                    navContainer.classList.add("text-white");
+                    navContainer.classList.remove("bg-white");
+                    if (userName) {
+                        userName.classList.remove("text-black");
+                        userName.classList.add("text-white");
+                    }
+                }
+            });
 
         godown.addEventListener("click", () => {
             section2.scrollIntoView({
@@ -76,9 +83,9 @@ window.addEventListener("DOMContentLoaded", () => {
     let roomCard = "";
 
     if (roomContainer) {
-        roomDataArr.map((el) => {
+        roomDataArr.map((el,i) => {
             roomCard += ` <div class="rounded-xl pb-2 relative bg-white shadow-sm group hover:shadow-xl transition-all duration-400">
-                        <div class="text-white absolute z-1 py-px rounded-full px-4 top-3 right-3 bg-[#193366] ">$${el.price}/night</div>
+                        <div class="text-white absolute z-1 py-px rounded-full px-4 top-3 right-3 bg-[#193366] ">Rs.${el.price}00/night</div>
                                <div class="rounded-t-lg w-full object-cover h-55 overflow-hidden ">
 
                             <img src="${el.image}" alt=""   class="w-full h-60 group-hover:scale-110 transition-all duration-500 object-cover"/>
@@ -108,7 +115,7 @@ window.addEventListener("DOMContentLoaded", () => {
                                     <h6 class="text-sm text-black/60 font-medium">Free Wifi</h6>
                                 </div>
                             </div>
-                            <button class="bg-[#193366] transition-all duration-200 cursor-pointer text-white rounded-full py-2 px-4 hover:bg-[#304775]">Book This Room</button>
+                            <a href="checkout.php?id=${i+1}" class="bg-[#193366] transition-all duration-200 cursor-pointer text-white text-center rounded-full py-2 px-4 hover:bg-[#304775]">Book This Room</a>
                         </div>
                     </div>`;
         });
@@ -191,7 +198,6 @@ window.addEventListener("DOMContentLoaded", () => {
             guestMessageContainer.innerHTML = guestMessage;
         };
         const sliderCOntainer = document.querySelector("#sliderCOntainer");
-  
 
         DisplayMessage(review[0]);
         window.MakeActiveSlider = (index) => {
@@ -211,4 +217,23 @@ window.addEventListener("DOMContentLoaded", () => {
         // imgSlider[activeIndex].classList.add("w-9");
         MakeActiveSlider(0);
     }
+
+
+    const gardenHeaderData=document.querySelector("#garden-header-data");
+    if(gardenHeaderData){
+        let  GardeninnerHtml="";
+        gardenDetails.map((el,i)=>{
+            GardeninnerHtml+=`<span
+                        class="border bg-white border-gray-200 py-4 gap-4 px-6 rounded-lg flex justify-center items-center">
+                        <i class="${el.icon}"></i>
+                        <span>
+                            <h2 class="text-lg text-black/80 font-medium">${el.title}</h2>
+                            <p class="text-xs text-black/60">${el.description}</p>
+                        </span>
+                    </span>`;
+        })
+          
+        gardenHeaderData.innerHTML=GardeninnerHtml;
+    }
+
 });
