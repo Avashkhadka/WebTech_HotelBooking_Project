@@ -100,6 +100,7 @@ if (isset($_SESSION['user_id'])) {
                         if ($row['status'] !== 'cancelled') {
 
 
+                            $statClas = $row['status'] == 'cancelled' ? "bg-red-300 text-red-800" : ($row['status'] == 'pending' ? "bg-yellow-300 text-yellow-800" : ($row['status'] == 'checked out' ? "bg-green-300 text-green-800" : ""));
                             $room = $row['room_id'];
                             $sql = "select label from rooms where room_id=$room ";
                             $resroom = mysqli_query($conn, $sql);
@@ -114,11 +115,12 @@ if (isset($_SESSION['user_id'])) {
                         <td class='p-3'>" . $roomd['label'] . "</td>
                         <td class='p-3'>" . $row['checkin_date'] . "</td>
                         <td class='p-3'>" . $row['checkout_date'] . "</td>
-                        <td class='p-3'>" . $row['status'] . "</td>
-                        <td class='p-3'>" . $row['special_request'] . "</td>
+                        <td class='p-3 '> <span class='px-4 py-px rounded-full ".$statClas."'>" . $row['status'] . "</span></td>
+                        <td class='p-3'>Rs. " . $row['tprice'] . "</td>
                         <td class='p-3'><div>
                         <form method='POST'>
-                        <a href='cancle.php?roomId=$room&bookingId=$booking_id' class='bg-[#FEE2E2] py-px px-4 rounded-full cursor-pointer hover:bg-red-200 text-red-500' >Cancle</a>
+                        " . ($row['status'] == 'checked out' ? "<span class='bg-gray-300 py-px px-4 rounded-full  text-black'>Cancle</span>" : "<a href='cancle.php?roomId=$room&bookingId=$booking_id' class='bg-[#FEE2E2] py-px px-4 rounded-full cursor-pointer hover:bg-red-200 text-red-500' >Cancle</a>
+                        ") . "
                         </form>
                         </div></td>
                         </tr>
@@ -128,7 +130,6 @@ if (isset($_SESSION['user_id'])) {
                     }
                     ?>
                 </table>
-
             </div>
         </section>
 

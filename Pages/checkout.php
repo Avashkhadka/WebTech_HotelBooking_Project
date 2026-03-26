@@ -28,14 +28,27 @@ if (isset($_POST['bconfirm'])) {
     $b_special_req = $_POST['b_special_req'];
     $user_id = $_SESSION['user_id'];
     $room_id = $_GET['id'];
-
+    $checkin = new DateTime($bc_in_date);
+    $checkout = new DateTime($bc_out_date);
+    $interval = $checkin->diff($checkout);
+    $days = $interval->days;
     if ($row['available'] > 0) {
+
+
+        $sqlBook = "SELECT price from rooms where room_id = $room_id";
+        $resBook = mysqli_query($conn, $sqlBook);
+        if (mysqli_num_rows($resBook) > 0) {
+            $roomd = mysqli_fetch_assoc($resBook);
+            $price = $roomd['price'] * 100;
+            $total = $price * $days;
+
+        }
 
         $sql = "UPDATE rooms set available=available-1 where room_id = $room_id";
         $res = mysqli_query($conn, $sql);
         if ($res) {
 
-            $sql = "INSERT INTO `booking`( `room_id`, `user_id`, `status`, `phone_number`, `no_of_guests`, `checkin_date`, `checkout_date`, `special_request`) VALUES ('$room_id','$user_id','pending','$bpnum','$bno_of_guests','$bc_in_date','$bc_out_date','$b_special_req')";
+            $sql = "INSERT INTO `booking`( `room_id`, `user_id`, `status`,`tprice`, `phone_number`, `no_of_guests`, `checkin_date`, `checkout_date`, `special_request`) VALUES ('$room_id','$user_id','pending',$total,'$bpnum','$bno_of_guests','$bc_in_date','$bc_out_date','$b_special_req')";
             $res = mysqli_query($conn, $sql);
             if ($res) {
                 $succ_message = "Successifylly. Redirecting to Rooms";
@@ -93,7 +106,7 @@ if (isset($_POST['bconfirm'])) {
                         <a href="room.php" class="hover:text-[#E5A819] transition-colors duration-150">Rooms</a>
                         <a href="garden.php" class="hover:text-[#E5A819] transition-colors duration-150">Garden &
                             Terrace</a>
-                       <a href="cartpage.php" class="hover:text-[#E5A819] transition-colors duration-150">My Cart</a>
+                        <a href="cartpage.php" class="hover:text-[#E5A819] transition-colors duration-150">My Cart</a>
                     </div>
                 </div>
                 <div class="lg:flex gap-8 items-center hidden">
