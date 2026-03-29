@@ -37,7 +37,7 @@ if (isset($_POST['UpdateStatus'])) {
         $resStatus = mysqli_query($conn, $sqlStatus);
         if (!$resStatus) {
             echo "Failed to change";
-        }else{
+        } else {
             header("location: adminpage.php");
         }
     }
@@ -209,19 +209,31 @@ if (isset($_POST['UpdateStatus'])) {
                         </div>
                         <div class="mb-2">
                             <h1 class="text-sm text-black/60 font-medium">Status</h1>
-                            <select name="status_change" id="" class="p-1  border-0 outline-0"
-                                onchange="StatusChange()"> ">
-                                <option value="pending" <?php echo $dataDialoug['status'] == 'pending' ? 'selected' : '' ?>>
+                            <?php
+                            echo ($dataDialoug['status'] == 'cancelled' || $dataDialoug['status'] == 'checked out') ? "<h1 class='text-sm text-black/80 font-medium'>".$dataDialoug['status']."</h1>" : "  <select name='status_change' class='p-1  border-0 outline-0'
+                                onchange='StatusChange()'> 
+                                <option value='pending'" . ($dataDialoug['status'] == 'pending' ? 'selected' : '') . ">
                                     Pending</option>
-                                <option value="cancelled" <?php echo $dataDialoug['status'] == 'cancelled' ? 'selected' : '' ?>>Cancelled</option>
-                                <option value="checked out" <?php echo $dataDialoug['status'] == 'checked out' ? 'selected' : '' ?>>Checked Out</option>
-                            </select>
+                                <option value='cancelled'" . ($dataDialoug['status'] == 'cancelled' ? 'selected' : '') . ">Cancelled</option>
+                                <option value='checked out'" . ($dataDialoug['status'] == 'checked out' ? 'selected' : '') . ">Checked Out</option>
+                            </select>"
+                                ?>
+
+
 
                         </div>
                     </div>
 
                 </div>
-                <button type="submit" class="mt-2 w-full p-2 flex rounded-full text-white  justify-center bg-[#193366] hover:bg-[#304775] transition-all duration-200" name="UpdateStatus">Update</button>
+                <?php
+                echo ($dataDialoug['status'] == 'cancelled' || $dataDialoug['status'] == 'checked out')  ?
+                    ""
+                    :
+                    ' <button type="submit"
+                    class="mt-2 w-full p-2 flex rounded-full text-white  justify-center bg-[#193366] hover:bg-[#304775] transition-all duration-200"
+                    name="UpdateStatus">Update</button>'
+                    ?>
+
             </form>
 
         </div>

@@ -94,7 +94,7 @@ if (isset($_POST['signin'])) {
                         stays.</p>
                     <form action="" method="POST">
 
-                        <input type="text"
+                        <input type="email"
                             class="mt-4 inset-0 w-full p-2.5 rounded-lg focus:outline-blue-500 outline-blue-500 bg-[#FDFDFE] placeholder:text-gray-500 placeholder:text-sm"
                             placeholder="Enter email" name="remail" required />
                         <input type="text"

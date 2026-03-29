@@ -119,7 +119,7 @@ if (isset($_SESSION['user_id'])) {
                         <td class='p-3'>Rs. " . $row['tprice'] . "</td>
                         <td class='p-3'><div>
                         <form method='POST'>
-                        " . ($row['status'] == 'checked out' ? "<span class='bg-gray-300 py-px px-4 rounded-full  text-black'>Cancle</span>" : "<a href='cancle.php?roomId=$room&bookingId=$booking_id' class='bg-[#FEE2E2] py-px px-4 rounded-full cursor-pointer hover:bg-red-200 text-red-500' >Cancle</a>
+                        " . ($row['status'] == 'checked out' ? "<span class='bg-gray-300 py-px px-4 rounded-full  text-black'>Cancel</span>" : "<a href='cancle.php?roomId=$room&bookingId=$booking_id' class='bg-[#FEE2E2] py-px px-4 rounded-full cursor-pointer hover:bg-red-200 text-red-500' >Cancel</a>
                         ") . "
                         </form>
                         </div></td>
