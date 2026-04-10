@@ -23,7 +23,7 @@ if (isset($_POST['signup'])) {
             $signup_error = "Email Already exists";
         } else {
             $hashedpass = password_hash($spassword, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (username,email,password,role) VALUES ('$sname','$semail','$hashedpass','user')";
+            $sql = "INSERT INTO users (username,email,password,role,status) VALUES ('$sname','$semail','$hashedpass','user','ACTIVE')";
             if (mysqli_query($conn, $sql)) {
                 header("location:http://localhost/webtech_hotelbooking_project/pages/login.php");
                 exit();
@@ -49,6 +49,10 @@ if (isset($_POST['signin'])) {
             $_SESSION['username']=$row['username'];
             $_SESSION['user_id']=$row['id'];
             $_SESSION['role']=$row['role'];
+            $id =$row['id'];
+            if($row['status'] == "DEACTIVATED"){
+                mysqli_query($conn, "UPDATE users set status = 'ACTIVE' where id = $id");
+            }
             header("location: http://localhost/webtech_hotelbooking_project/index.php");
             exit();
         } else {

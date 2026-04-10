@@ -1,4 +1,4 @@
-import { featuresHomeArr, review, roomDataArr, whyGuestLoveUsArr,gardenDetails } from "../Assets/data.js";
+import { featuresHomeArr, review, roomDataArr, whyGuestLoveUsArr, gardenDetails } from "../Assets/data.js";
 window.addEventListener("DOMContentLoaded", () => {
     const godown = document.querySelector("#godown");
     const section2 = document.querySelector("#section2");
@@ -81,14 +81,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const roomContainer = document.querySelector("#roomContainer");
     let roomCard = "";
+    const fetchData = async () => {
+        if (roomContainer) {
+            let offset = 0;
+            let res = await fetch(`../Pages/fetchrooms.php?offset=${offset}`);
+            let data = await res.json();
+            data = data.map((el, i) => {
 
-    if (roomContainer) {
-        roomDataArr.map((el,i) => {
-            roomCard += ` <div class="rounded-xl pb-2 relative bg-white shadow-sm group hover:shadow-xl transition-all duration-400">
+                roomCard += ` <div class="rounded-xl pb-2 relative bg-white shadow-sm group hover:shadow-xl transition-all duration-400">
                         <div class="text-white absolute z-1 py-px rounded-full px-4 top-3 right-3 bg-[#193366] ">Rs.${el.price}00/night</div>
                                <div class="rounded-t-lg w-full object-cover h-55 overflow-hidden ">
 
-                            <img src="${el.image}" alt=""   class="w-full h-60 group-hover:scale-110 transition-all duration-500 object-cover"/>
+                            <img src="../Assets/rooms/${el.image}" alt=""   class="w-full h-60 group-hover:scale-110 transition-all duration-500 object-cover"/>
                         </div>
                         <div class="p-4 flex flex-col">
                             <span class="flex items-center gap-2 mb-2">
@@ -115,12 +119,14 @@ window.addEventListener("DOMContentLoaded", () => {
                                     <h6 class="text-sm text-black/60 font-medium">Free Wifi</h6>
                                 </div>
                             </div>
-                            <a href="checkout.php?id=${i+1}" class="bg-[#193366] transition-all duration-200 cursor-pointer text-white text-center rounded-full py-2 px-4 hover:bg-[#304775]">Book This Room</a>
+                            <a href="checkout.php?id=${i + 1}" class="bg-[#193366] transition-all duration-200 cursor-pointer text-white text-center rounded-full py-2 px-4 hover:bg-[#304775]">Book This Room</a>
                         </div>
                     </div>`;
-        });
-        roomContainer.innerHTML = roomCard;
-    }
+            });
+            roomContainer.innerHTML = roomCard;
+        }
+    };
+    fetchData()
 
     const guestMessageContainer = document.querySelector("#guestMessage");
 
@@ -218,12 +224,11 @@ window.addEventListener("DOMContentLoaded", () => {
         MakeActiveSlider(0);
     }
 
-
-    const gardenHeaderData=document.querySelector("#garden-header-data");
-    if(gardenHeaderData){
-        let  GardeninnerHtml="";
-        gardenDetails.map((el,i)=>{
-            GardeninnerHtml+=`<span
+    const gardenHeaderData = document.querySelector("#garden-header-data");
+    if (gardenHeaderData) {
+        let GardeninnerHtml = "";
+        gardenDetails.map((el, i) => {
+            GardeninnerHtml += `<span
                         class="border bg-white border-gray-200 py-4 gap-4 px-6 rounded-lg flex justify-center items-center">
                         <i class="${el.icon}"></i>
                         <span>
@@ -231,9 +236,8 @@ window.addEventListener("DOMContentLoaded", () => {
                             <p class="text-xs text-black/60">${el.description}</p>
                         </span>
                     </span>`;
-        })
-          
-        gardenHeaderData.innerHTML=GardeninnerHtml;
-    }
+        });
 
+        gardenHeaderData.innerHTML = GardeninnerHtml;
+    }
 });

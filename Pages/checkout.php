@@ -39,7 +39,7 @@ if (isset($_POST['bconfirm'])) {
         $resBook = mysqli_query($conn, $sqlBook);
         if (mysqli_num_rows($resBook) > 0) {
             $roomd = mysqli_fetch_assoc($resBook);
-            $price = $roomd['price'] * 100;
+            $price = $roomd['price'];
             $total = $price * $days;
 
         }
@@ -173,7 +173,7 @@ if (isset($_POST['bconfirm'])) {
                             </div>
                             <div class="rounded-t-lg w-full object-cover h-55 overflow-hidden ">
 
-                                <img src="   <?php echo $row['image'] ?>" alt=""
+                                <img src="../Assets/rooms/<?php echo $row['image'] ?>" alt=""
                                     class="w-full h-60 group-hover:scale-110 transition-all duration-500 object-cover" />
                             </div>
                             <div class="p-6 flex flex-col">
