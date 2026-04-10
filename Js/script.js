@@ -80,15 +80,13 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     const roomContainer = document.querySelector("#roomContainer");
-    let roomCard = "";
-    const fetchData = async () => {
+    window.fetchData = async (offset) => {
         if (roomContainer) {
-            let offset = 0;
             let res = await fetch(`../Pages/fetchrooms.php?offset=${offset}`);
             let data = await res.json();
-            data = data.map((el, i) => {
-
-                roomCard += ` <div class="rounded-xl pb-2 relative bg-white shadow-sm group hover:shadow-xl transition-all duration-400">
+            let roomCard = data
+                .map((el, i) => {
+                    return ` <div class="rounded-xl pb-2 relative bg-white shadow-sm group hover:shadow-xl transition-all duration-400">
                         <div class="text-white absolute z-1 py-px rounded-full px-4 top-3 right-3 bg-[#193366] ">Rs.${el.price}00/night</div>
                                <div class="rounded-t-lg w-full object-cover h-55 overflow-hidden ">
 
@@ -119,14 +117,16 @@ window.addEventListener("DOMContentLoaded", () => {
                                     <h6 class="text-sm text-black/60 font-medium">Free Wifi</h6>
                                 </div>
                             </div>
-                            <a href="checkout.php?id=${i + 1}" class="bg-[#193366] transition-all duration-200 cursor-pointer text-white text-center rounded-full py-2 px-4 hover:bg-[#304775]">Book This Room</a>
+                            <a href="checkout.php?id=${el.room_id}" class="bg-[#193366] transition-all duration-200 cursor-pointer text-white text-center rounded-full py-2 px-4 hover:bg-[#304775]">Book This Room</a>
                         </div>
                     </div>`;
-            });
+                })
+                .join("");
             roomContainer.innerHTML = roomCard;
         }
     };
-    fetchData()
+
+    fetchData(0);
 
     const guestMessageContainer = document.querySelector("#guestMessage");
 

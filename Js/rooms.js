@@ -1,8 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
     const manageRoom = document.querySelector("#manageRoom");
     let roomData = "";
-    const fetchData = async () => {
-        let offset = 0;
+    window.fetchData = async (offset) => {
         let res = await fetch(`../Pages/fetchrooms.php?offset=${offset}`);
         let data = await res.json();
         roomData = data
@@ -35,6 +34,5 @@ window.addEventListener("DOMContentLoaded", () => {
             .join("");
         manageRoom.innerHTML = roomData;
     };
-
-    fetchData();
+    fetchData(0);
 });

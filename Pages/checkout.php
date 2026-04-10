@@ -280,14 +280,13 @@ if (isset($_POST['bconfirm'])) {
                                 <h1 class="text-playfair text-xl font-semibold">
                                     Price Summary</h1>
                                 <div class="w-full flex justify-between mt-4">
-                                    <h2 class="text-sm font-medium text-poppins text-black/60">Number of Guests</h2>
+                                    <h2 class="text-sm font-medium text-poppins text-black/60">Price of Room</h2>
                                     <h1 class="text-sm font-medium text-poppins text-black/90">
-                                        Rs.<?php echo $row['price'] ?>00</h1>
+                                        Rs.<?php echo $row['price'] ?></h1>
                                 </div>
                                 <div class="w-full flex justify-between mt-4">
                                     <h2 class="text-sm font-medium text-poppins text-black/60">Number of Nights</h2>
-                                    <h1 class="text-sm font-medium text-poppins text-black/90" id="noDayDisplay">
-                                        0
+                                    <h1 class="text-sm font-medium text-poppins text-black/90" id="noDayDisplay">0
                                     </h1>
 
                                 </div>
@@ -389,7 +388,7 @@ if (isset($_POST['bconfirm'])) {
                 const diff = checkout - checkin;
                 const days = diff / (1000 * 60 * 60 * 24);
                 noDayDisplay.innerHTML = days;
-                const price = <?php echo $row['price'] ?> * 100;
+                const price = <?php echo $row['price'] ?> ;
 
                 totalprice.innerHTML = `<h1>Rs.${days * price}</h1>`;
             }

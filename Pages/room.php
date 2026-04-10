@@ -69,12 +69,22 @@ if (!isset($_SESSION['isLogin'])) {
                     find your perfect retreat in Kathmandu.</p>
             </div>
         </section>
-        <section class="relative flex items-center justify-center bg-[#F9FAFB] py-12">
+        <section class="relative flex items-center flex-col justify-center bg-[#F9FAFB] py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6 max-w-7xl relative" id="roomContainer">
 
 
             </div>
-
+            <div class="flex mt-4 border border-gray-200" id="pageChange">
+                <span
+                    class=" border-r border-r-gray-300 h-10 w-10 flex justify-center items-center transition-color duration-200 cursor-pointer hover:bg-[#bbbbbb] bg-[#E7E7E9]"
+                    onclick="fetchData(0)"> 1</span>
+                <span
+                    class=" border-r border-r-gray-300 h-10 w-10 flex justify-center items-center transition-color duration-200 cursor-pointer hover:bg-[#bbbbbb] bg-[#E7E7E9]"
+                    onclick="fetchData(6)"> 2</span>
+                <span
+                    class=" h-10 w-10 flex justify-center items-center transition-color duration-200 cursor-pointer hover:bg-[#bbbbbb] bg-[#E7E7E9]"
+                    onclick="fetchData(12)"> 3</span>
+            </div>
         </section>
         <section class="pb-20 px-6  max-w-7xl mx-auto">
             <div class="max-w-7xl mx-auto rounded-lg bg-[#E3E6EB] p-10 text-center flex flex-col gap-4">
@@ -156,6 +166,7 @@ if (!isset($_SESSION['isLogin'])) {
         </div>
     </footer>
     <script type="module" src="../Js/script.js"></script>
+
 </body>
 
 </html>

@@ -182,12 +182,16 @@ if (isset($_POST['AddRoom'])) {
 
         </section>
 
-        <section class="relative pt-8 pb-20 flex items-center justify-center bg-[#F9FAFB] py-12">
+        <section class="relative pt-8 pb-20 flex flex-col items-center justify-center bg-[#F9FAFB] py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6 max-w-7xl relative" id="manageRoom">
                 Loading.....
 
             </div>
-
+            <div class="flex mt-4 border border-gray-200" id="pageChange">
+                <span class=" border-r border-r-gray-300 h-10 w-10 flex justify-center items-center transition-color duration-200 cursor-pointer hover:bg-[#bbbbbb] bg-[#E7E7E9]" onclick="fetchData(0)"> 1</span>
+                <span class=" border-r border-r-gray-300 h-10 w-10 flex justify-center items-center transition-color duration-200 cursor-pointer hover:bg-[#bbbbbb] bg-[#E7E7E9]" onclick="fetchData(6)"> 2</span>
+                <span class=" h-10 w-10 flex justify-center items-center transition-color duration-200 cursor-pointer hover:bg-[#bbbbbb] bg-[#E7E7E9]" onclick="fetchData(12)"> 3</span>
+            </div>
         </section>
         <div class="inset-0 absolute z-88 <?php echo (isset($_GET['editRoomId']) || isset($_GET['addRoom'])) ? '' : 'hidden'; ?>"
             id="dialog_admin">
@@ -202,11 +206,11 @@ if (isset($_POST['AddRoom'])) {
                             <?php
                             if (isset($_GET['editRoomId'])) { ?>
                                 <img src="../Assets/rooms/<?php echo $roomData['image'] ?>"
-                                    class="h-40 w-full object-cover rounded-lg" alt="">
+                                    class="h-40 w-full object-cover rounded-lg" loading="lazy" alt="">
 
                             <?php } else {
                                 ?>
-                                <img src="../Assets/rooms/dummy.jpg" class="h-40 w-full object-cover rounded-lg" alt="">
+                                <img src="../Assets/rooms/dummy.jpg" loading="lazy" class="h-40 w-full object-cover rounded-lg" alt="">
                                 <?php
                             }
                             ?>
@@ -272,9 +276,9 @@ if (isset($_POST['AddRoom'])) {
                                 class="mt-2 w-full p-2 flex rounded-lg text-white  justify-center bg-[#193366] hover:bg-[#304775] transition-all duration-200"
                                 name="<?php echo isset($_GET['editRoomId']) ? "UpdateStatus" : "AddRoom" ?>"><?php echo isset($_GET['editRoomId']) ? "Update" : "Add Room" ?></button>
 
-                            <button
+                            <a href="roomsetup.php"
                                 class="mt-2 w-full p-2 flex rounded-lg text-white  justify-center bg-[#a12727] hover:bg-[#b24c4c] transition-all duration-200"
-                                onclick="closeMenu()">Cancle</button>
+                                >Cancle</a>
                         </div>
 
                     </div>
@@ -350,17 +354,8 @@ if (isset($_POST['AddRoom'])) {
     </footer>
     <script type="module" src="../Js/script.js"></script>
     <script type="module" src="../Js/rooms.js"></script>
-    <script>
-
-        window.closeMenu = () => {
-            window.location.href = 'roomsetup.php';
-
-        }
 
 
-
-
-    </script>
 </body>
 
 </html>
